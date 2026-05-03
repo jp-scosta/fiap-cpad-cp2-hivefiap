@@ -21,13 +21,14 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   async function login(email, password) {
-    const storedData = await AsyncStorage.getItem(`@HiveFiap:account_${email}`);
+    const emailKey = email.trim().toLowerCase();
+    const storedData = await AsyncStorage.getItem(`@HiveFiap:account_${emailKey}`);
     if (storedData) {
       const userData = JSON.parse(storedData);
-      if (userData.password === password) {
+      if (userData.senha === password) {
         await AsyncStorage.setItem('@HiveFiap:user', JSON.stringify(userData));
         setUser(userData);
-        router.replace('/(tabs)'); 
+        router.replace('/');
         return { success: true };
       }
     }

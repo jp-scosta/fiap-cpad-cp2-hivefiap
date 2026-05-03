@@ -1,39 +1,72 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, ScrollView, TouchableOpacity, StyleSheet, ActivityIndicator } from "react-native";
-import { useLocalSearchParams } from "expo-router";
+import { useEffect, useMemo, useState } from "react";
+import { ActivityIndicator, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import FiapBackground from "../components/FiapBackground";
+import { useAuth } from "../context/AuthContext";
+
+const hojeISO = () => new Date().toISOString().slice(0, 10);
 
 export default function SalasDefault() {
   const { andar } = useLocalSearchParams();
   const [salas, setSalas] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [feedback, setFeedback] = useState({ msg: "", type: "" }); // Para mensagens de sucesso/erro na tela
-
-  // Chave única por andar para não misturar as reservas no Storage
-  const STORAGE_KEY = @HiveFiap:salas_andar_${andar};
+  const [feedback, setFeedback] = useState({ msg: "", type: "" });
+  const [dataReserva, setDataReserva] = useState(hojeISO());
+  const [horaInicio, setHoraInicio] = useState("14:00");
+  const [horaFim, setHoraFim] = useState("16:00");
+  const { loading: authLoading, signed, user } = useAuth();
+  const router = useRouter();
+  const storageKey = `@HiveFiap:salas_andar_${andar}`;
 
   useEffect(() => {
-    loadSalas();
-  }, [andar]);
+    if (!authLoading && !signed) {
+      router.replace("/login");
+    }
+  }, [authLoading, signed]);
+
+  useEffect(() => {
+    if (signed) {
+      loadSalas();
+    }
+  }, [andar, signed]);
+
+  const errosFormulario = useMemo(() => {
+    const erros = {};
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(dataReserva)) {
+      erros.data = "Use o formato AAAA-MM-DD.";
+    }
+    if (!/^\d{2}:\d{2}$/.test(horaInicio)) {
+      erros.inicio = "Use o formato HH:MM.";
+    }
+    if (!/^\d{2}:\d{2}$/.test(horaFim)) {
+      erros.fim = "Use o formato HH:MM.";
+    }
+    if (/^\d{2}:\d{2}$/.test(horaInicio) && /^\d{2}:\d{2}$/.test(horaFim) && horaInicio >= horaFim) {
+      erros.fim = "O fim deve ser depois do inicio.";
+    }
+    return erros;
+  }, [dataReserva, horaInicio, horaFim]);
+
+  const formularioValido = Object.keys(errosFormulario).length === 0;
 
   const loadSalas = async () => {
     try {
       setLoading(true);
-      const savedSalas = await AsyncStorage.getItem(STORAGE_KEY);
-      
+      const savedSalas = await AsyncStorage.getItem(storageKey);
+
       if (savedSalas) {
         setSalas(JSON.parse(savedSalas));
       } else {
-        // Se não houver dados, gera a lista inicial de 12 salas
         const inicial = Array.from({ length: 12 }, (_, i) => {
           const num = i + 1;
-          const salaNome = Sala ${andar}${num < 10 ? "0" + num : num};
-          return { id: i, nome: salaNome, ocupada: false, reservadaPorMim: false };
+          const salaNome = `Sala ${andar}${num < 10 ? "0" + num : num}`;
+          return { id: i, nome: salaNome, ocupada: false, reservadaPorMim: false, reserva: null };
         });
         setSalas(inicial);
       }
     } catch (e) {
-      showFeedback("Erro ao carregar salas", "error");
+      showFeedback("Erro ao carregar salas.", "error");
     } finally {
       setLoading(false);
     }
@@ -45,32 +78,45 @@ export default function SalasDefault() {
   };
 
   const toggleReserva = async (salaSelecionada) => {
-    // Lógica: Se a sala tá ocupada por outra pessoa (simulação), não faz nada
-    // Se está livre, eu reservo. Se eu reservei, eu posso cancelar.
-    
+    if (!salaSelecionada.ocupada && !formularioValido) {
+      showFeedback("Corrija data e horario antes de reservar.", "error");
+      return;
+    }
+
     const novasSalas = salas.map((sala) => {
-      if (sala.id === salaSelecionada.id) {
-        return { 
-          ...sala, 
-          ocupada: !sala.ocupada, 
-          reservadaPorMim: !sala.reservadaPorMim 
-        };
+      if (sala.id !== salaSelecionada.id) return sala;
+
+      if (sala.ocupada && sala.reservadaPorMim) {
+        return { ...sala, ocupada: false, reservadaPorMim: false, reserva: null };
       }
-      return sala;
+
+      return {
+        ...sala,
+        ocupada: true,
+        reservadaPorMim: true,
+        reserva: {
+          data: dataReserva,
+          inicio: horaInicio,
+          fim: horaFim,
+          usuario: user?.email || user?.usuario || "usuario",
+        },
+      };
     });
 
     try {
       setSalas(novasSalas);
-      await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(novasSalas));
-      
-      const acao = salaSelecionada.ocupada ? "Reserva cancelada!" : "Reserva confirmada!";
+      await AsyncStorage.setItem(storageKey, JSON.stringify(novasSalas));
+
+      const acao = salaSelecionada.ocupada
+        ? "Reserva cancelada."
+        : `Reserva confirmada para ${dataReserva}, das ${horaInicio} as ${horaFim}.`;
       showFeedback(acao, "success");
     } catch (e) {
-      showFeedback("Erro ao salvar alteração", "error");
+      showFeedback("Erro ao salvar alteracao.", "error");
     }
   };
 
-  if (loading) {
+  if (authLoading || loading || !signed) {
     return (
       <View style={styles.center}>
         <ActivityIndicator size="large" color="#ED145B" />
@@ -78,73 +124,243 @@ export default function SalasDefault() {
     );
   }
 
+  const livres = salas.filter((sala) => !sala.ocupada).length;
+  const minhas = salas.filter((sala) => sala.reservadaPorMim).length;
+
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <Text style={styles.titulo}>Andar {andar}</Text>
-      
-      {/* Feedback Visual (Requisito UX) */}
+    <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
+      <FiapBackground />
+      <View style={styles.header}>
+        <Text style={styles.logo}>FIAP</Text>
+        <Text style={styles.title}>ANDAR {andar}</Text>
+        <Text style={styles.subtitle}>{livres} salas livres | {minhas} reservas suas</Text>
+      </View>
+
+      <View style={styles.scheduler}>
+        <Text style={styles.sectionTitle}>Dados da reserva</Text>
+        <View style={styles.formGrid}>
+          <View style={styles.field}>
+            <Text style={styles.label}>DATA</Text>
+            <TextInput
+              onChangeText={setDataReserva}
+              placeholder="AAAA-MM-DD"
+              placeholderTextColor="#64737a"
+              style={styles.input}
+              value={dataReserva}
+            />
+            {errosFormulario.data ? <Text style={styles.errorText}>{errosFormulario.data}</Text> : null}
+          </View>
+          <View style={styles.field}>
+            <Text style={styles.label}>INICIO</Text>
+            <TextInput
+              onChangeText={setHoraInicio}
+              placeholder="HH:MM"
+              placeholderTextColor="#64737a"
+              style={styles.input}
+              value={horaInicio}
+            />
+            {errosFormulario.inicio ? <Text style={styles.errorText}>{errosFormulario.inicio}</Text> : null}
+          </View>
+          <View style={styles.field}>
+            <Text style={styles.label}>FIM</Text>
+            <TextInput
+              onChangeText={setHoraFim}
+              placeholder="HH:MM"
+              placeholderTextColor="#64737a"
+              style={styles.input}
+              value={horaFim}
+            />
+            {errosFormulario.fim ? <Text style={styles.errorText}>{errosFormulario.fim}</Text> : null}
+          </View>
+        </View>
+      </View>
+
       {feedback.msg !== "" && (
-        <View style={[styles.feedbackBadge, feedback.type === "error" ? styles.bgError : styles.bgSuccess]}>
+        <View style={StyleSheet.flatten([styles.feedbackBadge, feedback.type === "error" ? styles.bgError : styles.bgSuccess])}>
           <Text style={styles.feedbackText}>{feedback.msg}</Text>
         </View>
       )}
 
       <View style={styles.grid}>
-        {salas.map((sala) => (
-          <TouchableOpacity
-            key={sala.id}
-            style={[
-              styles.card,
-              sala.ocupada ? (sala.reservadaPorMim ? styles.minhaReserva : styles.ocupada) : styles.livre
-            ]}
-            onPress={() => toggleReserva(sala)}
-          >
-            <Text style={styles.salaNome}>{sala.nome}</Text>
-            <Text style={styles.statusText}>
-              {sala.ocupada ? (sala.reservadaPorMim ? "Sua Reserva" : "Ocupada") : "Livre"}
-            </Text>
-          </TouchableOpacity>
-        ))}
+        {salas.map((sala) => {
+          const minhaReserva = sala.ocupada && sala.reservadaPorMim;
+          const ocupada = sala.ocupada && !sala.reservadaPorMim;
+
+          return (
+            <TouchableOpacity
+              activeOpacity={0.85}
+              key={sala.id}
+              style={StyleSheet.flatten([
+                styles.card,
+                minhaReserva && styles.minhaReserva,
+                ocupada && styles.ocupada,
+              ])}
+              onPress={() => toggleReserva(sala)}
+            >
+              <View style={StyleSheet.flatten([styles.statusDot, !sala.ocupada && styles.dotLivre, minhaReserva && styles.dotMinha])} />
+              <Text style={styles.salaNome}>{sala.nome}</Text>
+              <Text style={styles.statusText}>
+                {sala.ocupada ? (sala.reservadaPorMim ? "Sua reserva" : "Ocupada") : "Livre"}
+              </Text>
+              {sala.reserva ? (
+                <Text style={styles.timeText}>
+                  {sala.reserva.data} | {sala.reserva.inicio}-{sala.reserva.fim}
+                </Text>
+              ) : (
+                <Text style={styles.timeText}>Toque para reservar</Text>
+              )}
+            </TouchableOpacity>
+          );
+        })}
       </View>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#000" },
-  content: { padding: 20, alignItems: "center" },
-  center: { flex: 1, backgroundColor: "#000", justifyContent: "center", alignItems: "center" },
-  titulo: { color: "#fff", fontSize: 26, fontWeight: "bold", marginBottom: 20 },
-  
-  grid: { width: '100%', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around' },
-  
-  card: { 
-    width: '45%', 
-    padding: 20, 
-    marginBottom: 15, 
-    borderRadius: 12, 
-    alignItems: 'center',
-    elevation: 5,
-    shadowColor: "#000",
-    shadowOpacity: 0.3,
-    shadowRadius: 5
+  screen: {
+    flex: 1,
+    backgroundColor: "#050606",
   },
-  
-  salaNome: { fontSize: 16, fontWeight: "bold", color: "#000" },
-  statusText: { fontSize: 12, color: "#000", marginTop: 5 },
-  
-  livre: { backgroundColor: "#4dff88" }, // Verde
-  ocupada: { backgroundColor: "#ff4d4d" }, // Vermelho
-  minhaReserva: { backgroundColor: "#ED145B", borderWidth: 2, borderColor: "#fff" }, // Rosa FIAP
-
-  feedbackBadge: { 
-    padding: 10, 
-    borderRadius: 8, 
-    width: '100%', 
-    marginBottom: 20, 
-    alignItems: 'center' 
+  content: {
+    minHeight: "100%",
+    padding: 28,
   },
-  bgSuccess: { backgroundColor: '#2e7d32' },
-  bgError: { backgroundColor: '#c62828' },
-  feedbackText: { color: '#fff', fontWeight: 'bold' }
+  center: {
+    flex: 1,
+    backgroundColor: "#050606",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  header: {
+    marginBottom: 22,
+  },
+  logo: {
+    color: "#ED145B",
+    fontSize: 40,
+    fontWeight: "200",
+  },
+  title: {
+    color: "#eef5f7",
+    fontSize: 28,
+    fontWeight: "900",
+    marginTop: 12,
+  },
+  subtitle: {
+    color: "#9baab0",
+    fontSize: 15,
+    marginTop: 6,
+  },
+  scheduler: {
+    width: "100%",
+    borderWidth: 1,
+    borderColor: "#2e3a3f",
+    backgroundColor: "#101314",
+    padding: 16,
+    marginBottom: 18,
+  },
+  sectionTitle: {
+    color: "#eef5f7",
+    fontSize: 16,
+    fontWeight: "900",
+    marginBottom: 12,
+  },
+  formGrid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 12,
+  },
+  field: {
+    minWidth: 160,
+    flex: 1,
+  },
+  label: {
+    color: "#cbd5da",
+    fontSize: 12,
+    fontWeight: "900",
+    marginBottom: 8,
+  },
+  input: {
+    height: 46,
+    borderWidth: 1,
+    borderColor: "#46545a",
+    color: "#e8f4f8",
+    paddingHorizontal: 14,
+    fontSize: 15,
+    backgroundColor: "#090b0c",
+  },
+  errorText: {
+    color: "#ff7f9d",
+    fontSize: 12,
+    marginTop: 5,
+  },
+  feedbackBadge: {
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderWidth: 1,
+    width: "100%",
+    marginBottom: 18,
+  },
+  bgSuccess: {
+    borderColor: "#4dff88",
+    backgroundColor: "#0d1d14",
+  },
+  bgError: {
+    borderColor: "#ff4d6d",
+    backgroundColor: "#210b12",
+  },
+  feedbackText: {
+    color: "#eef5f7",
+    fontWeight: "800",
+  },
+  grid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 14,
+  },
+  card: {
+    width: 190,
+    minHeight: 150,
+    backgroundColor: "#101314",
+    borderWidth: 1,
+    borderColor: "#2e3a3f",
+    padding: 16,
+    justifyContent: "space-between",
+  },
+  ocupada: {
+    borderColor: "#5b2d35",
+    backgroundColor: "#171012",
+    opacity: 0.7,
+  },
+  minhaReserva: {
+    borderColor: "#ED145B",
+    backgroundColor: "#1b0910",
+  },
+  statusDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    backgroundColor: "#ff4d6d",
+    alignSelf: "flex-end",
+  },
+  dotLivre: {
+    backgroundColor: "#4dff88",
+  },
+  dotMinha: {
+    backgroundColor: "#ED145B",
+  },
+  salaNome: {
+    fontSize: 18,
+    fontWeight: "900",
+    color: "#eef5f7",
+  },
+  statusText: {
+    fontSize: 13,
+    color: "#9baab0",
+  },
+  timeText: {
+    fontSize: 12,
+    color: "#cbd5da",
+    marginTop: 8,
+  },
 });
