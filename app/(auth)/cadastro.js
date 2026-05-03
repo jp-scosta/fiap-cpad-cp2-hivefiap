@@ -45,9 +45,14 @@ export default function Cadastro() {
     setErros(tempErros);
 
     if (Object.keys(tempErros).length === 0) {
+      const usuarioKey = usuario.trim().toLowerCase();
+      const emailKey = email.trim().toLowerCase();
+
       const userData = { nome: nome.trim(), usuario: usuarioKey, email: emailKey, senha };
+      
       await AsyncStorage.setItem(`@HiveFiap:account_${usuarioKey}`, JSON.stringify(userData));
       await AsyncStorage.setItem(`@HiveFiap:account_${emailKey}`, JSON.stringify(userData));
+      
       router.replace("/login");
     }
   };
