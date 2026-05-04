@@ -158,12 +158,18 @@ Obrigatorio antes da entrega: adicionar prints de todas as telas e link de GIF/v
 
 
 ## Gifs
-<img width="300" alt="gif 1" src="https://github.com/user-attachments/assets/ed22c881-24d9-4b1d-8716-68e35d223764" />
-<img width="300" alt="gif 2" src="https://github.com/user-attachments/assets/ab685767-bd79-44db-8e02-1e8bb779f254" />
-<img width="300" alt="gif 3" src="https://github.com/user-attachments/assets/23c9a66a-bb97-4f38-82ca-c5e044080940" />
-<img width="300" alt="gif 4" src="https://github.com/user-attachments/assets/64b7afd2-5b2d-4c52-9b19-95b613233464" />
-<img width="300" alt="gif 5" src="https://github.com/user-attachments/assets/63ffc4b6-1f22-4075-9e82-c6d9cf5deb85" />
-<img width="300" alt="gif 6" src="https://github.com/user-attachments/assets/1ba4cb04-ce54-4d45-b050-fc129b3db0d7" />
+<img width="300" alt="gif 1" src="https://github.com/user-attachments/assets/93b30821-8c69-4e86-8436-94ba1f0b1d41" />
+<img width="300" alt="gif 2" src="https://github.com/user-attachments/assets/dfcd74a6-f92c-4a25-a313-eece53f6ba8b" />
+<img width="300" alt="gif 3" src="https://github.com/user-attachments/assets/ee150b71-c821-45f2-9707-aeb7da32dfa5" />
+<img width="300" alt="gif 4" src="https://github.com/user-attachments/assets/6f3f3baa-44cb-4d5b-b70a-e0fe7814c292" />
+<img width="300" alt="gif 5" src="https://github.com/user-attachments/assets/cc66be3f-b323-48d8-99d4-b811846b2898" />
+<img width="300" alt="gif 6" src="https://github.com/user-attachments/assets/cb7029b7-791b-4998-90c2-b60e213cae98" />
+
+
+
+
+
+
 
 
 
