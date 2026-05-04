@@ -142,19 +142,19 @@ Obrigatorio antes da entrega: adicionar prints de todas as telas e link de GIF/v
 
 ### Prints
 
-- <img width="367" height="763" alt="Conecte se" src="https://github.com/user-attachments/assets/0542f8ee-5f21-4649-a613-34561ceaec3e" />
+- <img width="300" alt="Conecte se" src="https://github.com/user-attachments/assets/0542f8ee-5f21-4649-a613-34561ceaec3e" />
 
-- <img width="362" height="755" alt="Tela de cadastro" src="https://github.com/user-attachments/assets/6e51fbc0-10e6-4786-8ff5-82fa5204ff52" />
+- <img width="300" alt="Tela de cadastro" src="https://github.com/user-attachments/assets/6e51fbc0-10e6-4786-8ff5-82fa5204ff52" />
 
-- <img width="351" height="768" alt="Espaços fiap" src="https://github.com/user-attachments/assets/a9b7fad4-e4cf-4260-b20b-f40ece22bda9" />
+- <img width="300" alt="Espaços fiap" src="https://github.com/user-attachments/assets/a9b7fad4-e4cf-4260-b20b-f40ece22bda9" />
 
-- <img width="347" height="748" alt="Tela principal 2" src="https://github.com/user-attachments/assets/f9341f89-9fd7-436c-ab8c-c12adef6e09a" />
+- <img width="300" alt="Tela principal 2" src="https://github.com/user-attachments/assets/f9341f89-9fd7-436c-ab8c-c12adef6e09a" />
 
-- <img width="366" height="777" alt="Tela reserva de sala" src="https://github.com/user-attachments/assets/193c1642-c50a-412c-86e7-4ffd2d3913f2" />
+- <img width="300" alt="Tela reserva de sala" src="https://github.com/user-attachments/assets/193c1642-c50a-412c-86e7-4ffd2d3913f2" />
 
-- <img width="366" height="765" alt="Tela Maker lab" src="https://github.com/user-attachments/assets/760e647b-bd77-44c5-b9a7-e678aed401ed" />
+- <img width="300" alt="Tela Maker lab" src="https://github.com/user-attachments/assets/760e647b-bd77-44c5-b9a7-e678aed401ed" />
 
-- <img width="350" height="782" alt="Tela minhas reservas" src="https://github.com/user-attachments/assets/8531e3c8-0cde-4c3e-85b6-db06ca944899" />
+- <img width="300" alt="Tela minhas reservas" src="https://github.com/user-attachments/assets/8531e3c8-0cde-4c3e-85b6-db06ca944899" />
 
 
 ## Gifs
