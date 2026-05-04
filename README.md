@@ -1,6 +1,6 @@
-<img width="390" height="794" alt="tela de login" src="https://github.com/user-attachments/assets/d81082eb-c682-4434-9a22-2e3a0ddb43d5" />
-﻿# HiveFIAP
 
+﻿# HiveFIAP
+ 
 Aplicativo cross-platform desenvolvido com React Native, Expo e Expo Router para gerenciar reservas de espacos academicos da FIAP e materiais do Maker Lab.
 
 ## Sobre o Projeto
@@ -142,14 +142,13 @@ Obrigatorio antes da entrega: adicionar prints de todas as telas e link de GIF/v
 
 ### Prints
 
-Adicione aqui:
-
 - <img width="390" height="794" alt="tela de login" src="https://github.com/user-attachments/assets/802a4be3-2248-47b4-b306-279dcf580701" />
 
 - <img width="362" height="755" alt="Tela de cadastro" src="https://github.com/user-attachments/assets/6e51fbc0-10e6-4786-8ff5-82fa5204ff52" />
 
-- <img width="347" height="748" alt="Tela principal 2" src="https://github.com/user-attachments/assets/aa1bb16d-b8c6-4408-b23b-4bda040f264c" />
-<img width="357" height="772" alt="Tela principal" src="https://github.com/user-attachments/assets/85f9fee7-77cc-4667-b885-d7714d319bd2" />
+- <img width="357" height="772" alt="Tela principal" src="https://github.com/user-attachments/assets/5cb80631-42c6-456f-b9e7-34a8733c9c37" />
+
+<img width="347" height="748" alt="Tela principal 2" src="https://github.com/user-attachments/assets/f9341f89-9fd7-436c-ab8c-c12adef6e09a" />
 
 - <img width="366" height="777" alt="Tela reserva de sala" src="https://github.com/user-attachments/assets/193c1642-c50a-412c-86e7-4ffd2d3913f2" />
 
@@ -166,43 +165,3 @@ Adicione aqui:
 <img width="300" alt="gif 5" src="https://github.com/user-attachments/assets/5d688a88-00b9-4f94-8207-2e613472ccd0" />
 
 
-
-
-
-
-
-
-
-
-
-Fluxo esperado:
-
-1. Cadastro de usuario.
-2. Login.
-3. Reserva de uma sala.
-4. Visualizacao da sala na tela Minhas reservas.
-5. Reserva de material com quantidade no Maker Lab.
-6. Visualizacao do material na tela Minhas reservas.
-7. Busca/filtro no Maker Lab.
-8. Logout.
-
-Link do video/GIF: preencher antes da entrega.
-
-## Proximos Passos
-
-- Adicionar notificacoes locais para lembrar reservas.
-- Permitir foto de perfil com ImagePicker.
-- Criar uma tela de historico de reservas concluidas/canceladas.
-- Adicionar edicao de dados do usuario.
-
-## Status dos Requisitos do CP2
-
-- React Native + Expo: OK.
-- Expo Router com pelo menos 3 telas: OK.
-- Auth com AsyncStorage: OK.
-- Persistencia funcional com AsyncStorage: OK.
-- Context API: OK.
-- Formularios com validacao inline: OK.
-- UX/UI refinada: OK.
-- Diferencial tecnico: OK.
-- README documentado: OK, faltando apenas prints, video e dados finais do grupo.
