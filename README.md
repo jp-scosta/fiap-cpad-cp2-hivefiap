@@ -1,3 +1,4 @@
+<img width="390" height="794" alt="tela de login" src="https://github.com/user-attachments/assets/d81082eb-c682-4434-9a22-2e3a0ddb43d5" />
 ﻿# HiveFIAP
 
 Aplicativo cross-platform desenvolvido com React Native, Expo e Expo Router para gerenciar reservas de espacos academicos da FIAP e materiais do Maker Lab.
@@ -143,13 +144,19 @@ Obrigatorio antes da entrega: adicionar prints de todas as telas e link de GIF/v
 
 Adicione aqui:
 
-- Tela de login.
-- Tela de cadastro.
-- Tela principal.
-- Tela de salas por andar.
-- Tela do Maker Lab.
-- Tela de busca sem resultados.
-- Tela de Minhas reservas.
+- <img width="390" height="794" alt="tela de login" src="https://github.com/user-attachments/assets/802a4be3-2248-47b4-b306-279dcf580701" />
+
+- <img width="362" height="755" alt="Tela de cadastro" src="https://github.com/user-attachments/assets/6e51fbc0-10e6-4786-8ff5-82fa5204ff52" />
+
+- <img width="347" height="748" alt="Tela principal 2" src="https://github.com/user-attachments/assets/aa1bb16d-b8c6-4408-b23b-4bda040f264c" />
+<img width="357" height="772" alt="Tela principal" src="https://github.com/user-attachments/assets/85f9fee7-77cc-4667-b885-d7714d319bd2" />
+
+- <img width="366" height="777" alt="Tela reserva de sala" src="https://github.com/user-attachments/assets/193c1642-c50a-412c-86e7-4ffd2d3913f2" />
+
+- <img width="366" height="765" alt="Tela Maker lab" src="https://github.com/user-attachments/assets/760e647b-bd77-44c5-b9a7-e678aed401ed" />
+
+- <img width="350" height="782" alt="Tela minhas reservas" src="https://github.com/user-attachments/assets/8531e3c8-0cde-4c3e-85b6-db06ca944899" />
+
 
 ## Gifs
 <img width="300" alt="gif 1" src="https://github.com/user-attachments/assets/59806c02-4f95-437d-95c1-1f23d9f779b0" />
