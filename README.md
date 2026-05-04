@@ -142,7 +142,7 @@ Obrigatorio antes da entrega: adicionar prints de todas as telas e link de GIF/v
 
 ### Prints
 
-- <img width="390" height="794" alt="tela de login" src="https://github.com/user-attachments/assets/802a4be3-2248-47b4-b306-279dcf580701" />
+- <img width="367" height="763" alt="Conecte se" src="https://github.com/user-attachments/assets/0542f8ee-5f21-4649-a613-34561ceaec3e" />
 
 - <img width="362" height="755" alt="Tela de cadastro" src="https://github.com/user-attachments/assets/6e51fbc0-10e6-4786-8ff5-82fa5204ff52" />
 
