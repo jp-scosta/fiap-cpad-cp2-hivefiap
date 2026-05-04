@@ -152,11 +152,11 @@ Adicione aqui:
 - Tela de Minhas reservas.
 
 ## Gifs
-<img width="1080" height="2340" alt="gif 1" src="https://github.com/user-attachments/assets/59806c02-4f95-437d-95c1-1f23d9f779b0" />
-<img width="1080" height="2340" alt="gif 2" src="https://github.com/user-attachments/assets/07466ff5-2b4a-4ede-b451-4e0b80593a29" />
-<img width="1080" height="2340" alt="gif 3" src="https://github.com/user-attachments/assets/e3347658-28f1-4575-bc5f-5fa1f8d058f3" />
-<img width="1080" height="2340" alt="gif 4" src="https://github.com/user-attachments/assets/f06cfeb1-fb73-4c7e-a5e4-a5fa0a614468" />
-<img width="1080" height="2340" alt="gif 5" src="https://github.com/user-attachments/assets/5d688a88-00b9-4f94-8207-2e613472ccd0" />
+<img width="300" alt="gif 1" src="https://github.com/user-attachments/assets/59806c02-4f95-437d-95c1-1f23d9f779b0" />
+<img width="300" alt="gif 2" src="https://github.com/user-attachments/assets/07466ff5-2b4a-4ede-b451-4e0b80593a29" />
+<img width="300" alt="gif 3" src="https://github.com/user-attachments/assets/e3347658-28f1-4575-bc5f-5fa1f8d058f3" />
+<img width="300" alt="gif 4" src="https://github.com/user-attachments/assets/f06cfeb1-fb73-4c7e-a5e4-a5fa0a614468" />
+<img width="300" alt="gif 5" src="https://github.com/user-attachments/assets/5d688a88-00b9-4f94-8207-2e613472ccd0" />
 
 
 
