@@ -30,7 +30,7 @@ export default function Index() {
       <View style={styles.header}>
         <View>
           <View style={styles.brandRow}>
-            <Image source={require("../assets/icon.png")} style={styles.brandIcon} />
+            <Image source={require("../assets/Fiap.png")} style={styles.brandIcon} />
             <View>
               <Text style={styles.logo}>FIAP</Text>
               <Text style={styles.kicker}>HIVEFIAP</Text>
@@ -43,7 +43,7 @@ export default function Index() {
       </View>
 
       <View style={styles.hero}>
-        <Text style={styles.title}>ESPACOS ACADEMICOS</Text>
+        <Text style={styles.title}>ESPAÇOS ACADEMÍCOS</Text>
         <Text style={styles.subtitle}>
           Ola, {user?.nome || "aluno"}. Escolha um ambiente para reservar.
         </Text>

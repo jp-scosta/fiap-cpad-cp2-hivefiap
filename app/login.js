@@ -37,13 +37,13 @@ export default function Login() {
     const emailRegex = /\S+@\S+\.\S+/;
 
     if (!emailKey) {
-      novosErros.email = "O e-mail e obrigatorio.";
+      novosErros.email = "O e-mail é obrigatorio.";
     } else if (!emailRegex.test(emailKey)) {
       novosErros.email = "Informe um e-mail valido.";
     }
 
     if (!senha) {
-      novosErros.senha = "A senha e obrigatoria.";
+      novosErros.senha = "A senha é obrigatoria.";
     } else if (senha.length < 6) {
       novosErros.senha = "A senha deve ter pelo menos 6 caracteres.";
     }
@@ -85,7 +85,7 @@ export default function Login() {
       <View style={StyleSheet.flatten([styles.leftPane, compact && styles.leftPaneCompact])}>
         <Text style={styles.callout}>
           CONECTE-SE COM{"\n"}SUA <Text style={styles.strong}>JORNADA</Text>{"\n"}
-          <Text style={styles.strong}>ACADEMICA</Text>
+          <Text style={styles.strong}>ACADEMÍCA</Text>
         </Text>
       </View>
 
