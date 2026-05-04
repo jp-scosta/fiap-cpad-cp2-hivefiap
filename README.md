@@ -148,7 +148,7 @@ Obrigatorio antes da entrega: adicionar prints de todas as telas e link de GIF/v
 
 - <img width="357" height="772" alt="Tela principal" src="https://github.com/user-attachments/assets/5cb80631-42c6-456f-b9e7-34a8733c9c37" />
 
-<img width="347" height="748" alt="Tela principal 2" src="https://github.com/user-attachments/assets/f9341f89-9fd7-436c-ab8c-c12adef6e09a" />
+- <img width="347" height="748" alt="Tela principal 2" src="https://github.com/user-attachments/assets/f9341f89-9fd7-436c-ab8c-c12adef6e09a" />
 
 - <img width="366" height="777" alt="Tela reserva de sala" src="https://github.com/user-attachments/assets/193c1642-c50a-412c-86e7-4ffd2d3913f2" />
 
@@ -158,10 +158,16 @@ Obrigatorio antes da entrega: adicionar prints de todas as telas e link de GIF/v
 
 
 ## Gifs
-<img width="300" alt="gif 1" src="https://github.com/user-attachments/assets/3709c961-ceda-4169-b57b-4d04817a1898" />
-<img width="300" alt="gif 2" src="https://github.com/user-attachments/assets/b4bc80a8-983b-46e2-8462-bc7a9411b461" />
-<img width="300" alt="gif 3" src="https://github.com/user-attachments/assets/e3347658-28f1-4575-bc5f-5fa1f8d058f3" />
-<img width="300" alt="gif 4" src="https://github.com/user-attachments/assets/f06cfeb1-fb73-4c7e-a5e4-a5fa0a614468" />
-<img width="300" alt="gif 5" src="https://github.com/user-attachments/assets/5d688a88-00b9-4f94-8207-2e613472ccd0" />
+<img width="300" alt="gif 1" src="https://github.com/user-attachments/assets/ed22c881-24d9-4b1d-8716-68e35d223764" />
+<img width="300" alt="gif 2" src="https://github.com/user-attachments/assets/ab685767-bd79-44db-8e02-1e8bb779f254" />
+<img width="300" alt="gif 3" src="https://github.com/user-attachments/assets/23c9a66a-bb97-4f38-82ca-c5e044080940" />
+<img width="300" alt="gif 4" src="https://github.com/user-attachments/assets/64b7afd2-5b2d-4c52-9b19-95b613233464" />
+<img width="300" alt="gif 5" src="https://github.com/user-attachments/assets/63ffc4b6-1f22-4075-9e82-c6d9cf5deb85" />
+<img width="300" alt="gif 6" src="https://github.com/user-attachments/assets/1ba4cb04-ce54-4d45-b050-fc129b3db0d7" />
+
+
+
+
+
 
 
