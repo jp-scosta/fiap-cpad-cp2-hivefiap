@@ -146,7 +146,7 @@ Obrigatorio antes da entrega: adicionar prints de todas as telas e link de GIF/v
 
 - <img width="362" height="755" alt="Tela de cadastro" src="https://github.com/user-attachments/assets/6e51fbc0-10e6-4786-8ff5-82fa5204ff52" />
 
-- <img width="357" height="772" alt="Tela principal" src="https://github.com/user-attachments/assets/5cb80631-42c6-456f-b9e7-34a8733c9c37" />
+- <img width="351" height="768" alt="Espaços fiap" src="https://github.com/user-attachments/assets/a9b7fad4-e4cf-4260-b20b-f40ece22bda9" />
 
 - <img width="347" height="748" alt="Tela principal 2" src="https://github.com/user-attachments/assets/f9341f89-9fd7-436c-ab8c-c12adef6e09a" />
 
