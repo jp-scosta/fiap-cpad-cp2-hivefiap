@@ -85,7 +85,7 @@ export default function Login() {
       <View style={StyleSheet.flatten([styles.leftPane, compact && styles.leftPaneCompact])}>
         <Text style={styles.callout}>
           CONECTE-SE COM{"\n"}SUA <Text style={styles.strong}>JORNADA</Text>{"\n"}
-          <Text style={styles.strong}>ACADEMÍCA</Text>
+          <Text style={styles.strong}>ACADÊMICA</Text>
         </Text>
       </View>
 

@@ -43,7 +43,7 @@ export default function Index() {
       </View>
 
       <View style={styles.hero}>
-        <Text style={styles.title}>ESPAÇOS ACADEMÍCOS</Text>
+        <Text style={styles.title}>ESPAÇOS ACADÊMICOS</Text>
         <Text style={styles.subtitle}>
           Ola, {user?.nome || "aluno"}. Escolha um ambiente para reservar.
         </Text>

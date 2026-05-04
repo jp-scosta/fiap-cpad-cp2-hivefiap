@@ -25,7 +25,7 @@ export default function Layout() {
 
         <Stack.Screen
           name="index"
-          options={{ title: 'Espacos FIAP' }}
+          options={{ title: 'Espaços FIAP' }}
         />
 
         <Stack.Screen
